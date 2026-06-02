@@ -1,4 +1,6 @@
-# ML-Capstone: Titanic Survival Prediction using Machine Learning and Neural Networks
+# ML-Capstone
+
+## Titanic Survival Prediction using Machine Learning and Neural Networks
 
 > Capstone Project for ML, Deep Learning & NLP Applications — Capstone Project
 ---
