@@ -38,7 +38,7 @@ Three machine learning models were trained and compared:
 
 A feed-forward neural network was built using Keras with the following baseline architecture: two hidden layers with 64 and 32 neurons respectively, both using ReLU activation to introduce non-linearity, a Dropout layer after each hidden layer to reduce overfitting, and a final output layer with a single neuron using Sigmoid activation to produce a probability between 0 and 1.
 
-The baseline model was trained for **10 epochs** using the Adam optimiser and binary cross-entropy loss, achieving an F1-score of **0.705**.
+The baseline model was trained for **10 epochs** using the Adam optimiser and binary cross-entropy loss, achieving an F1-score of **0.750**.
 
 An improved version was then tested with two targeted changes:
 
@@ -46,7 +46,7 @@ An improved version was then tested with two targeted changes:
 
 **Early Stopping was added with a maximum of 50 epochs.** Rather than training for a fixed number of steps, Early Stopping monitors performance on the validation set and halts training automatically when it stops improving. This prevents the model from memorising the training data past the point of usefulness. The model stopped well before the 50-epoch limit, which confirms that longer training would have caused overfitting.
 
-The improved model achieved: **Accuracy: 0.799 | Precision: 0.800 | Recall: 0.638 | F1-Score: 0.710** — a small but consistent improvement over the baseline.
+The improved model achieved: **Accuracy: 0.793 | Precision: 0.786 | Recall: 0.638 | F1-Score: 0.704** — slightly *worse* than the baseline rather than better. The heavier dropout (0.5) appears to have removed too much capacity for such a small dataset, so the extra regularisation reduced performance instead of improving it.
 
 ---
 
@@ -57,10 +57,10 @@ The improved model achieved: **Accuracy: 0.799 | Precision: 0.800 | Recall: 0.63
 | Logistic Regression     | 0.804    | 0.793     | 0.667  | 0.724    |
 | Random Forest           | 0.816    | 0.781     | 0.725  | 0.752    |
 | KNN                     | 0.816    | 0.800     | 0.696  | 0.744    |
-| Baseline Neural Network | 0.799    | 0.811     | 0.623  | 0.705    |
-| Improved Neural Network | 0.799    | 0.800     | 0.638  | 0.710    |
+| Baseline Neural Network | 0.821    | 0.814     | 0.696  | 0.750    |
+| Improved Neural Network | 0.793    | 0.786     | 0.638  | 0.704    |
 
-**Random Forest** achieved the highest F1-score of **0.752**, making it the strongest overall model. The improved neural network performed better than the baseline but still fell short of Random Forest.
+**Random Forest** achieved the highest F1-score of **0.752**, making it the strongest overall model — though the baseline neural network came extremely close (0.750) and had the highest accuracy of any model (0.821). The improved neural network performed *worse* than the baseline (F1 dropped to 0.704), so the attempted tuning did not pay off on this dataset.
 
 This result is expected. Neural networks are most powerful when trained on large amounts of data, because they need many examples to detect complex, non-obvious patterns. With only 891 records, there is not enough data for the network to develop a significant advantage. Random Forest, on the other hand, performs well on small, structured datasets because it makes decisions based on straightforward rules derived directly from the input features — and requires far less data and tuning to do so effectively.
 
